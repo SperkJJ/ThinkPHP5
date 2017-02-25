@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>微信用户在线充值</title>
+    <script type="text/javascript">
+        //调用微信JS api 支付
+        //在线充值
+        function jsApiCall()
+        {
+
+            var b={$parameters};
+
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {
+                         "appId":b.appId,
+                         "nonceStr":b.nonceStr,
+                         "package":b.package,
+                         "paySign":b.paySign,
+                         "signType":b.signType,
+                         "timeStamp":b.timeStamp
+                    },
+                    function(res){
+                        if(res.err_msg == 'get_brand_wcpay_request:ok'){
+
+                            alert('恭喜您，支付成功!更新可能会有5～10秒延迟，请稍后查看电子票!');
+                           // window.location.href = '<?php echo ROOT ?>/index.php?r=index/index&c=1';     //登录成功 跳转到主要页面
+
+                        }else{
+
+                             alert(JSON.stringify(res));
+
+                        }
+                    }
+            );
+
+        }
+        function callpay(){
+
+            if (typeof WeixinJSBridge == "undefined"){
+
+                if( document.addEventListener ){
+
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall,false);
+
+                }else if (document.attachEvent){
+
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+
+            }else{
+
+                jsApiCall();
+
+            }
+        }
+    </script>
+</head>
+<body>
+<br/>
+<div align="center">
+    <button style="width:210px; height:50px; border-radius: 15px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" type="button" onclick="callpay()" >立即充值</button>
+</div>
+</body>
+</html>
