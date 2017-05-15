@@ -14,9 +14,9 @@ class Sms{
     	$sms = new \api\AliyunSms($data);
     	$status = $sms->send_verify($mobile, $veryify_code);
     	if(!$status)
-        	//短信发送失败
-        	return false;
-    	return true;
+			echo "短信发送失败！";
+    	else
+			echo "短信发送成功！";
     }	
 }   
 	
