@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Web推送案列</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+</head>
+<button onclick="push()">推送按钮</button>
+<body>
+<script type="text/javascript" src="http://cdn.goeasy.io/goeasy.js"></script>
+<script>
+	var goEasy = new GoEasy({
+		appkey: "your appkey"
+	});
+	//实现接受推送消息功能,服务端/其他WEB推送的消息在这函数中能接收到
+	goEasy.subscribe({ 
+        channel: 'your channel',
+        onMessage: function(message){
+            alert('收到：'+message.content);
+        }
+    });
+	function push(){
+		//实现发送功能，点击该按钮可以向其他WEB端发送推送消息
+		goEasy.publish({
+			channel: 'your channel',
+			message: 'Hello world!'
+		});
+	}
+</script>
+</body>
+</html>
