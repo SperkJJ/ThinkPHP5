@@ -2,7 +2,7 @@
 namespace app/index/controller:
 class Sms{
     public function send(){
-    	//读取阿里云短息相关配置信息
+    	// 读取阿里云短息相关配置信息
     	$config = config('aliyun_sms');
     	$data = [
         	'accessKeyId' => $config ['accessKeyId'],                 //your appid
@@ -14,9 +14,9 @@ class Sms{
     	$sms = new \api\AliyunSms($data);
     	$status = $sms->send_verify($mobile, $veryify_code);
     	if(!$status)
-			echo "短信发送失败！";
+		echo "短信发送失败！";
     	else
-			echo "短信发送成功！";
+		echo "短信发送成功！";
     }	
 }   
 	
