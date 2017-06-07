@@ -11,9 +11,9 @@ header('Content-type:text/html;charset=utf-8');
 
 class Pay{
 
-    private $app_id = '';                                                      //Your appid
-    private $mch_id = '';                                                      //Your 商户号
-    private $makesign = '';                                                    //Your API支付的签名(在商户平台API安全按钮中获取)
+    private $app_id = '';                                                      // Your appid
+    private $mch_id = '';                                                      // Your 商户号
+    private $makesign = '';                                                    // Your API支付的签名(在商户平台API安全按钮中获取)
     private $parameters=NULL;
     private $notify='http://www.ctz.cn/wxpay.php';                             //配置回调地址(给pays中转文件上传到根目录下面)
     private $app_secret='';                                                    //Your appSecret 微信官方获取
@@ -42,9 +42,9 @@ class Pay{
         $jsApiObj["signType"] = "MD5";
         $jsApiObj["paySign"] = $this->MakeSign($jsApiObj);
         
-		$json = json_encode($jsApiObj);
-		//返回支付页面，并将相关参数返回给JS
-		return view('Pay',['parameters' => $json]);
+        $json = json_encode($jsApiObj);
+	//返回支付页面，并将相关参数返回给JS
+	return view('Pay',['parameters' => $json]);
     }
 
 
